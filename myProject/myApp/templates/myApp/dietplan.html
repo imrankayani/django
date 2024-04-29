@@ -1,0 +1,341 @@
+{% extends "myApp/base.html" %}
+
+{% block content %}
+  <h2>Diet Plan</h2>
+
+  <button type="button" class="btn btn-primary btn-lg" id="liveToastBtn">Click me!</button>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="https://img.icons8.com/?size=512&id=8jdMCwiRzYTv&format=png" class="rounded me-2" alt="lightbulb icon" style="width: 25px; height: 25px;">
+        <strong class="me-auto">Insight from Imran</strong>
+        <small>Just now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Scroll to the bottom to figure out how much protein you should be consuming daily.
+      </div>
+    </div>
+  </div>
+
+
+  <!-- JavaScript -->
+  <script>
+    const toastTrigger = document.getElementById('liveToastBtn');
+    const toastLiveExample = document.getElementById('liveToast');
+
+    if (toastTrigger) {
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+      toastTrigger.addEventListener('click', () => {
+        toastBootstrap.show();
+      });
+    }
+  </script>
+
+  <body style="background-color: #add8e6;"> <!-- Set light blue background color -->
+    <div class="container mt-4">
+      <div class="p-4" style="background-color: #3594fc; border-radius: 8px;">
+        <form id="dayTypeForm">
+          <div class="mb-3">
+            <label class="form-label text-white">What type of day is it?</label>
+            <img src="https://img.icons8.com/?size=512&id=104882&format=png" alt="Football Icon" class="img-fluid" style="width: 50px; height: 50px;">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="dayType" id="gameDay" value="game">
+              <label class="form-check-label text-white" for="gameDay">
+                Game Day
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="dayType" id="trainingDay" value="training">
+              <label class="form-check-label text-white" for="trainingDay">
+                Training Day
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="dayType" id="gymDay" value="gym">
+              <label class="form-check-label text-white" for="gymDay">
+                Gym Day
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="dayType" id="restDay" value="rest">
+              <label class="form-check-label text-white" for="restDay">
+                Rest Day
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div class="mt-4">
+          <h3 class="text-white">Recommendation:</h3>
+          <p id="recommendation" class="text-white"></p>
+        </div>
+      </div>
+    </div>
+  </body> <!-- Closing body tag -->
+  <br>
+
+  <div class="accordion">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+          Power of Protein
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <strong>The importance of protein is massive. It not only helps build muscle but can keep you lean all year round and aid recovery! Make sure you are hitting the right amount for your weight. To work this out, tap the click me button at the top of the page!</strong> 
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+          Create meals based on their protein
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <strong>Whether you are looking for an extra 5g top up to hit your goals or deciding on what is a high protein meal for lunch, AthletePro has you sorted! Test it out below now.</strong>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    
+    <!-- Protein Targeting Form -->
+    <div class="card mb-4" style="background-color: #3594fc;">
+        <div class="card-body">
+            <h5 class="card-title text-white">Find Foods by their Protein Contents</h5>
+            
+            <!-- Form for protein targeting -->
+            <form id="proteinTargetingForm">
+                <h7 class="card-title text-white">
+                    <label for="targetProtein">Enter target protein amount for your snack/meal (grams):</label>
+                    <input type="number" id="targetProtein" name="targetProtein" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Find Foods</button>
+            </form>
+
+            <!-- Display Suggested Foods -->
+            <div id="suggestedFoods" class="card-title text-white"></div>
+        </div>
+    </div>
+
+
+<script>
+    // JavaScript code for the functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // API credentials
+        var appId = '27665238';
+        var appKey = '7aa61cf1dce97ed88e604a9b57326064';
+
+        // Form and suggestions element
+        var proteinTargetingForm = document.getElementById('proteinTargetingForm');
+        var suggestedFoodsElement = document.getElementById('suggestedFoods');
+
+        // Event listener for form submission
+        proteinTargetingForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get target protein from user input
+            var targetProtein = parseFloat(document.getElementById('targetProtein').value);
+
+            // List of ingredients to analyse as API usage restrictions
+            var ingredients = ['chicken', 'beef', 'lamb', 'tofu', 'lentils', 'salmon', 'tuna', 'cod', 'eggs', 'milk', 'cheese', 'nuts', 'red meat', 'shrimp', 'quinoa'];
+
+            // Analyse each ingredient and display the ones with protein content meeting the target
+            suggestedFoodsElement.innerHTML = '<p>Analysing ingredients...</p>';
+            var suggestions = [];
+            var requests = ingredients.map(ingredient => fetch(`https://api.edamam.com/api/nutrition-data?app_id=${appId}&app_key=${appKey}&nutrition-type=logging&ingr=${encodeURIComponent(ingredient)}`));
+
+            Promise.all(requests)
+                .then(responses => Promise.all(responses.map(response => response.json())))
+                .then(data => {
+                    // Filter ingredients based on target protein
+                    data.forEach((ingredientData, index) => {
+                        if (ingredientData.totalNutrients.PROCNT && ingredientData.totalNutrients.PROCNT.quantity >= targetProtein) {
+                            suggestions.push({
+                                name: ingredients[index],
+                                protein: ingredientData.totalNutrients.PROCNT.quantity.toFixed(2),
+                                unit: ingredientData.totalNutrients.PROCNT.unit
+                            });
+                        }
+                    });
+
+                    // Display suggested foods
+                    if (suggestions.length > 0) {
+                        suggestedFoodsElement.innerHTML = '<h6>Foods with your target protein or higher:</h6>';
+                        suggestions.forEach(suggestion => {
+                            suggestedFoodsElement.innerHTML += `
+                                <p>${suggestion.name}: ${suggestion.protein} ${suggestion.unit} protein</p>
+                            `;
+                        });
+                    } else {
+                        suggestedFoodsElement.innerHTML = '<p>No foods found with your target protein content or higher.</p>';
+                    }
+                })
+                .catch(error => {
+                    suggestedFoodsElement.innerHTML = `Failed to fetch data: ${error}`;
+                });
+        });
+    });
+</script>
+
+  <!-- Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-wL3gGf5A7CFPjktgS02Gz3q1lqVg6AqC9RHDPOC5PZ9YEI1Tbpxf2A3eSRIHlNmy" crossorigin="anonymous"></script>
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <script>
+    // Function to handle form submission
+    document.getElementById('dayTypeForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const dayType = document.querySelector('input[name="dayType"]:checked').value;
+      console.log('Selected day type:', dayType);
+      
+      // Display recommendation based on the selected day type
+      let recommendation = "";
+      switch (dayType) {
+        case "game":
+          recommendation = "On Game Day, ensure to consume more carbs pre game to fuel your energy for the match. Drink plenty of water and take electrolyte supplements to decrease risk of cramp and muscle fatigue. Post game, load up on protein to help the hard worked muscles repair and grow stronger.";
+          break;
+        case "training":
+          recommendation = "On Training Day, remember to stay hydrated as you'll sweat a lot. Fuel up with lots of carbs beforehand to provide you with adequete energy.";
+          break;
+        case "gym":
+          recommendation = "On Gym Day, focus on consuming lots of protein as your muscles will be stimulated but need fuel to become stronger.";
+          break;
+        case "rest":
+          recommendation = "On Rest Day, reduce calorie intake as activity levels decrease, but ensure to get adequate protein to maintain strength. To calcualte an accurate protein intake for your own body, use our protein caluclate at the bottom of the page!";
+          break;
+        default:
+          recommendation = "Please select a day type.";
+      }
+      document.getElementById('recommendation').innerText = recommendation;
+    });
+
+
+  </script>
+
+  <div class="text-center">
+    <h2 style ="color: red;"><del>Cut those sugary and processed foods out.</del></h2>
+    <h2 style ="color: black;">Here are some Healthy Meal Recommendations you can incorporate!</h2>
+  </div>
+
+  <!-- Breakfast Section -->
+  <div class="row mb-4 d-flex justify-content-center"> <!-- Centering the box -->
+    <div class="col-md-8"> <!-- Adjust the width here -->
+      <div class="p-4" style="background-color: #3594fc; border-radius: 8px; display: flex; align-items: center;">
+        <div>
+          <h3 class="text-white">Breakfast</h3>
+          <ul class="list-unstyled text-white">
+            <li>Option 1: Scrambled eggs with avocado</li>
+            <li>Option 2: Greek yogurt with mixed berries</li>
+            <li>Option 3: Oatmeal with sliced bananas and almonds</li>
+          </ul>
+        </div>
+        <img src="https://img.icons8.com/?size=512&id=S2xuUgtInb37&format=png" alt="Breakfast Icon" class="img-fluid" style="width: 100px; height: 100px; margin-left: auto;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Lunch Section -->
+  <div class="row mb-4 d-flex justify-content-center"> <!-- Centering the box -->
+    <div class="col-md-8"> <!-- Adjust the width here -->
+      <div class="p-4" style="background-color: #3594fc; border-radius: 8px; display: flex; align-items: center;">
+        <div>
+          <h3 class="text-white">Lunch</h3>
+          <ul class="list-unstyled text-white">
+            <li>Option 1: Grilled chicken salad with quinoa</li>
+            <li>Option 2: Turkey wrap with veggies and hummus</li>
+            <li>Option 3: Lentil soup with whole grain bread</li>
+          </ul>
+        </div>
+        <img src="https://img.icons8.com/?size=512&id=13319&format=png" alt="Lunch Icon" class="img-fluid" style="width: 100px; height: 100px; margin-left: auto;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Dinner Section -->
+  <div class="row mb-4 d-flex justify-content-center"> <!-- Centering the box -->
+    <div class="col-md-8"> <!-- Adjust the width here -->
+      <div class="p-4" style="background-color: #3594fc; border-radius: 8px; display: flex; align-items: center;">
+        <div>
+          <h3 class="text-white">Dinner</h3>
+          <ul class="list-unstyled text-white">
+            <li>Option 1: Baked salmon with roasted vegetables</li>
+            <li>Option 2: Stir-fried tofu with brown rice</li>
+            <li>Option 3: Beef stir-fry with broccoli and bell peppers</li>
+          </ul>
+        </div>
+        <img src="https://img.icons8.com/?size=512&id=lQa13dV8Qrwg&format=png" alt="Dinner Icon" class="img-fluid" style="width: 100px; height: 100px; margin-left: auto;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Snacks Section -->
+  <div class="row mb-4 d-flex justify-content-center"> <!-- Centering the box -->
+    <div class="col-md-8"> <!-- Adjust the width here -->
+      <div class="p-4" style="background-color: #3594fc; border-radius: 8px; display: flex; align-items: center;">
+        <div>
+          <h3 class="text-white">Snacks</h3>
+          <ul class="list-unstyled text-white">
+            <li>Option 1: Apple slices with peanut butter</li>
+            <li>Option 2: Cottage cheese with pineapple</li>
+            <li>Option 3: Carrot sticks with hummus</li>
+          </ul>
+        </div>
+        <img src="https://img.icons8.com/?size=512&id=IGeh0fvLu7qF&format=png" alt="Snacks Icon" class="img-fluid" style="width: 100px; height: 100px; margin-left: auto;">
+      </div>
+    </div>
+  </div>
+
+  <body style="background-color: #add8e6; text-align: center;"> <!-- Set light blue background color and center text -->
+    <div class="container mt-4">
+      <!-- Quick Tips Section -->
+      <div class="p-4 mb-4" style="background-color: #3594fc; border-radius: 8px;">
+        <div class="d-flex align-items-center mb-3">
+          <h3 class="text-white me-3">Quick Tips</h3>
+          <div class="spinner-grow" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        <form id="proteinCalcForm">
+          <div class="mb-3">
+            <label for="weightInput" class="form-label text-white">Enter your weight (in kg):</label>
+            <input type="number" class="form-control" id="weightInput" placeholder="Enter weight" required>
+          </div>
+          <button type="submit" class="btn btn-light">Calculate</button>
+        </form>
+        <div class="mt-3">
+          <h4 class="text-white">Protein Recommendation:</h4>
+          <p id="proteinRecommendation" class="text-white"></p>
+        </div>
+      </div>
+      
+      <!-- Your existing content here -->
+      
+    </div>
+  </body> <!-- Closing body tag -->
+
+  <script>
+
+    // Function to handle form submission for protein calculation
+    document.getElementById('proteinCalcForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const weight = parseFloat(document.getElementById('weightInput').value);
+      
+      // Perform calculation for protein recommendation
+      const minProtein = weight * 1.8; // Minimum recommendation: 1.8 grams of protein per kilogram of body weight
+      const maxProtein = weight * 2.2; // Maximum recommendation: 2.2 grams of protein per kilogram of body weight
+      
+      // Display the protein recommendation range
+      document.getElementById('proteinRecommendation').innerText = `To support muscle gain, aim to consume between ${minProtein.toFixed(1)} and ${maxProtein.toFixed(1)} grams of protein per day.`;
+    });
+  </script>
+  
+
+{% endblock %}

@@ -1,0 +1,262 @@
+{% extends "myApp/base.html" %}
+
+{% block content %}
+<body style="background-color: #add8e6;"> <!-- Set light blue background color -->
+  <div class="container mt-4">
+    <h2 class="text-primary mb-4">Wellbeing</h2>
+
+    <!-- Stress Management -->
+    <div class="card mb-4" style="background-color: #3594fc;">
+      <div class="card-body">
+        <h5 class="card-title text-white">Stress Management</h5>
+        <p class="card-text text-white">Explore relaxation exercises and mindfulness techniques to reduce stress.</p>
+        
+        <!-- Row for the Breathing Exercise and Calming Music -->
+        <div class="row">
+          <!-- Column for Breathing Exercise -->
+          <div class="col-md-6">
+            <div id="breathingTimer" class="card mb-4" style="background-color: #7e8893;">
+              <div class="card-body">
+                <h5 class="card-title text-white">Breathing Exercise</h5>
+                <p class="card-text text-white">Inhale deeply for 5 seconds, then exhale slowly for 5 seconds. Repeat for relaxation.</p>
+                <div class="col-md-6"> <!-- Column for the image -->
+                  <img src="https://img.icons8.com/?size=512&id=hFvrWuZ0vgf0&format=png" alt="Breathing Icon" class="img-fluid float-end" style="width: 100px; height: 100px;">
+                </div>
+                <div id="timerDisplay" class="display-4 text-white">Inhale</div>
+                <button id="startButton" class="btn btn-primary">Start</button>
+                <button id="stopButton" class="btn btn-danger">Stop</button>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            let timerInterval;
+            let totalTime = 0;
+            let inhaleTime = 5; // Inhale for 5 seconds
+            let exhaleTime = 5; // Exhale for 5 seconds
+        
+            const timerDisplay = document.getElementById('timerDisplay');
+            const startButton = document.getElementById('startButton');
+            const stopButton = document.getElementById('stopButton');
+        
+            function startTimer() {
+              timerInterval = setInterval(updateTimer, 1000);
+              startButton.disabled = true;
+              stopButton.disabled = false;
+            }
+        
+            function stopTimer() {
+              clearInterval(timerInterval);
+              startButton.disabled = false;
+              stopButton.disabled = true;
+            }
+        
+            function updateTimer() {
+              if (totalTime < inhaleTime) {
+                timerDisplay.textContent = `Inhale (${inhaleTime - totalTime})`;
+              } else if (totalTime >= inhaleTime && totalTime < inhaleTime + exhaleTime) {
+                timerDisplay.textContent = `Exhale (${inhaleTime + exhaleTime - totalTime})`;
+              } else {
+                totalTime = 0;
+              }
+        
+              totalTime++;
+            }
+        
+            startButton.addEventListener('click', startTimer);
+            stopButton.addEventListener('click', stopTimer);
+          </script>
+
+          <!-- Column for Calming Music -->
+          <div class="col-md-6">
+            <div class="card mb-4" style="background-color: #7e8893;">
+              <div class="card-body">
+                <h5 class="card-title text-white">Calming Music</h5>
+                <p class="card-text text-white">Listen to soothing music to help relax your mind and body.</p>
+                <!-- Updated 'href' attribute to link to the Spotify track -->
+                <a href="https://open.spotify.com/track/6xsOIolcDvXCHyJkpWJVuk" class="btn btn-primary" target="_blank">Listen Now</a>
+                <div class="col-md-2"> <!-- Column for the image -->
+                  <img src="https://img.icons8.com/?size=512&id=FKt5zEasllKt&format=png" alt="Music Icon" class="img-fluid float-end" style="width: 100px; height: 100px;">
+                </div>
+              </div>
+            </div>
+          </div>
+
+    <!-- Padding to create a gap between boxs -->
+    <div style="padding-bottom: 20px;"></div>
+
+    <!-- Inspirational Stories -->
+    <div class="card mb-4" style="background-color: #3594fc;">
+        <div class="card-body">
+            <h5 class="card-title text-white">Inspirational Stories</h5>
+            <p class="card-text text-white">Read stories of inspiration and resilience to help stay motivate during difficult times.</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <iframe src="https://www.qmul.ac.uk/media/news/2024/pr/queen-mary-university-footballer-aims-for-world-cup-glory-with-pakistan.html" width="100%" height="400px"></iframe>
+                </div>
+                <div class="col-md-6">
+                    <iframe src="https://www.scrolldroll.com/inspiring-footballers-who-braved-all-struggles/" width="100%" height="400px"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+           
+    <style>
+      /* CSS for adjusting the input fields */
+      input[type="number"], select {
+          background-color: #f2f2f2; /* Light gray background color */
+          color: #333; /* Dark text color */
+      }
+  </style>
+</head>
+<body>
+
+  <style>
+    /* CSS for adjusting the input fields */
+    input[type="number"], select {
+        background-color: #f2f2f2; /* Light gray background color */
+        color: #333; /* Dark text color */
+    }
+</style>
+</head>
+<body>
+<!-- Sleep Tracking Form -->
+<div class="card mb-4" style="background-color: #3594fc;">
+    <div class="card-body">
+        <h5 class="card-title text-white">Sleep Tracking</h5>
+        <p class="card-text text-white">Monitor your sleep patterns and quality to optimize your rest and recovery.</p>
+        
+        <!-- Sleep Tracking Form -->
+        <form id="sleepForm">
+            <div class="mb-3">
+                <label for="hours" class="form-label text-white">Sleep Hours:</label>
+                <input type="number" class="form-control" id="hours" min="0" max="24" required>
+            </div>
+            <div class="mb-3">
+                <label for="quality" class="form-label text-white">Sleep Quality:</label>
+                <select class="form-control" id="quality" required>
+                    <option value="Poor">Poor</option>
+                    <option value="Fair">Fair</option>
+                    <option value="Good">Good</option>
+                    <option value="Excellent">Excellent</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Sleep Data</button>
+            <button type="button" id="resetButton" class="btn btn-danger">Reset Data</button> <!-- Reset button -->
+        </form>
+
+        <!-- Display Saved Sleep Data -->
+        <div id="sleepData">
+            <h6 class="text-white mt-4">Sleep Data:</h6>
+            <ul id="sleepList" class="list-group list-group-flush"></ul>
+        </div>
+    </div>
+</div>
+
+<!-- Add your scripts here -->
+<script>
+    // Function to save sleep data
+    function saveSleepData(hours, quality) {
+        // Retrieve the current day count
+        let dayCount = localStorage.getItem('dayCount') || 0;
+        dayCount = parseInt(dayCount) + 1;
+
+        // Create a sleep data object
+        const sleepData = {
+            day: dayCount,
+            hours: hours,
+            quality: quality
+        };
+
+        // Save the sleep data in local storage
+        localStorage.setItem(`day${dayCount}`, JSON.stringify(sleepData));
+        localStorage.setItem('dayCount', dayCount);
+
+        // Display the sleep data
+        displaySleepData();
+    }
+
+    // Function to display sleep data
+    function displaySleepData() {
+        const sleepList = document.getElementById('sleepList');
+        sleepList.innerHTML = '';
+
+        const dayCount = localStorage.getItem('dayCount') || 0;
+
+        // Iterate through each day and display the data
+        for (let i = 1; i <= dayCount; i++) {
+            const sleepData = JSON.parse(localStorage.getItem(`day${i}`));
+            const listItem = document.createElement('li');
+            listItem.classList.add('list-group-item', 'text-dark');
+            listItem.innerHTML = `Day ${sleepData.day}: ${sleepData.hours} hours of sleep (Quality: ${sleepData.quality})`;
+            sleepList.appendChild(listItem);
+        }
+    }
+
+    // Function to clear sleep data
+    function clearSleepData() {
+        // Remove all sleep data from local storage
+        localStorage.clear();
+
+        // Reset the form
+        sleepForm.reset();
+
+        // Clear the displayed sleep data
+        displaySleepData();
+    }
+
+    // Form submission handling
+    const sleepForm = document.getElementById('sleepForm');
+    sleepForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from submitting normally
+
+        // Get sleep data from the form
+        const hours = document.getElementById('hours').value;
+        const quality = document.getElementById('quality').value;
+
+        // Save the sleep data
+        saveSleepData(hours, quality);
+
+        // Reset the form
+        sleepForm.reset();
+    });
+
+    // Event listener for reset button
+    const resetButton = document.getElementById('resetButton');
+    resetButton.addEventListener('click', clearSleepData);
+
+    // Display sleep data on page load
+    displaySleepData();
+</script>
+
+    
+
+
+    <!-- Mental Health Support -->
+    <div class="card mb-4" style="background-color: #3594fc;">
+        <div class="card-body">
+            <h5 class="card-title text-white">Mental Health Support</h5>
+            <p class="card-text text-white">Your mental health is just as important as your physical health! Feel free to talk to someone no matter how big or small your worries are.</p>
+            <div class="card-body" style="background-color: #7e8893;">
+                <p class="card-text text-dark">For support, you can call the NHS at <a href="tel:111" class="text-dark">111</a>.</p>
+                <p class="card-text text-dark">If you just need someone to talk to, text SHOUT to 85258. You will remain anonymous and texts are free. You can send a message at any time (24/7 service).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Community Support -->
+    <div class="card mb-4" style="background-color: #3594fc;">
+      <div class="card-body">
+        <h5 class="card-title text-white">Community Support</h5>
+        <p class="card-text text-white">Connect with like-minded individuals and join virtual support groups to share experiences and find encouragement.</p>
+        <a href="#" class="btn btn-primary">Join Community</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-wL3gGf5A7CFPjktgS02Gz3q1lqVg6AqC9RHDPOC5PZ9YEI1Tbpxf2A3eSRIHlNmy" crossorigin="anonymous"></script>
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+{% endblock %}

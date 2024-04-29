@@ -1,0 +1,175 @@
+{% extends "myApp/base.html" %}
+
+{% block content %}
+  <h2>Football Drills</h2>
+  <style>
+    body {
+      background-color: #add8e6; /* Light Blue Background Color */
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+
+<!-- Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-wL3gGf5A7CFPjktgS02Gz3q1lqVg6AqC9RHDPOC5PZ9YEI1Tbpxf2A3eSRIHlNmy" crossorigin="anonymous"></script>
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<!-- Football Training Videos -->
+<div class="card mb-4" style="background-color: #3594fc;">
+  <div class="card-body">
+      <h5 class="card-title text-white">Football Training Videos</h5>
+      <p class="card-text text-white">Watch football training videos to improve your skills and techniques.</p>
+      <div class="row">
+          <div class="col-md-6">
+              <!-- Replace the src attribute with the link to a football training video -->
+              <iframe src="https://www.youtube.com/embed/IUU2cx8j6gM" width="100%" height="400px" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+          <div class="col-md-6">
+              <!-- Replace the src attribute with the link to a football training video -->
+              <iframe src="https://www.youtube.com/embed/2b19RSXed0c" width="100%" height="400px" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+      </div>
+  </div>
+</div>
+
+<h2>Drills for specific attributes</h2>
+
+  <!-- Passing Drills Card -->
+  <div class="card mb-4" style="background-color: #3594fc;">
+      <button onclick="toggleVisibility('passingDrills')" style="margin-bottom: 10px;">Display Passing Drills</button>
+      <!-- Passing Drills Sections -->
+      <div id="passingDrills" style="display: none;">
+          <!-- Beginner Section -->
+          <div class="section">
+              <h3>Beginner Drills</h3>
+              <div class="drill">
+                  <span class="drill-title">Passing Drill:</span>
+                  <span class="drill-description">Practice short, simple passes against a with a partner over a distance of 5 to 10 yards. Take one touch to control,and another to pass. Focus on accuracy hitting the same spot or your partners feet with each pass.</span>
+              </div>
+          </div>
+
+          <br>
+
+          <!-- Intermediate Section -->
+          <div class="section">
+              <h3>Intermediate Drills</h3>
+              <div class="drill">
+                  <span class="drill-title">Passing Drill:</span>
+                  <span class="drill-description">Practice longer passes with a partner over a distance of 15 to 20 yards. Work on both ground passes and lofted passes.</span>
+              </div>
+          </div>
+
+          <br>
+
+          <!-- Professional Section -->
+          <div class="section">
+              <h3>Professional Drills</h3>
+              <div class="drill">
+                  <span class="drill-title">Passing Drill:</span>
+                  <span class="drill-description">Set up a Rondo. This is where a group of players set up in a small area with one defender in the middle trying to win the ball back. Limit touches to one to increase quick decision making and awareness. If you pass the ball out the area or the defender wins it, you swap and enter the middle.</span>
+              </div>
+              <div class="drill-image">
+                <img src="https://www.sportsessionplanner.com/lnkssp.mpl?a=download_session_image&filename=1164337.jpg" alt="Professional Shooting Drill" style="width: 100%; max-width: 600px; margin: 10px auto; display: block;">>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Shooting Drills Card -->
+  <div class="card mb-4" style="background-color: #3594fc;">
+      <button onclick="toggleVisibility('shootingDrills')" style="margin-bottom: 10px;">Display Shooting Drills</button>
+      <!-- Shooting Drills Sections -->
+      <div id="shootingDrills" style="display: none;">
+          <!-- Beginner Section -->
+          <div class="section">
+              <h3>Beginner Drills</h3>
+              <div class="drill">
+                  <span class="drill-title">Shooting Drill:</span>
+                  <span class="drill-description">Practice shooting on an empty goal from the edge of the penalty area. Take your time and focus on getting th accuracy right before adding speed and power.</span>
+              </div>
+          </div>
+
+          <br>
+
+          <!-- Intermediate Section -->
+          <div class="section">
+              <h3>Intermediate Drills</h3>
+              <div class="drill">
+                  <span class="drill-title">Shooting Drill:</span>
+                  <span class="drill-description">Set up cones in the bottom corners of the goal, a few yards in from each post. Practice taking a touch out your feet and shooting from various distances. Focus on hitting the corners consistently.</span>
+              </div>
+          </div>
+
+          <br>
+
+          <!-- Professional Section -->
+          <div class="section">
+              <h3>Professional Drills</h3>
+              <div class="drill">
+                  <span class="drill-title">Shooting Drill:</span>
+                  <span class="drill-description">Practice shooting whilst dribbling at pace. If possible, get a teammate to defend against you. Dribble towards the goal, beat the defender and unleash a strike. Having a keeper adds to the challenge and make sure to practise with both your strong and weak foot! Ensure to work at match intensity to improve accuracy under pressure.</span>
+              </div>
+              <div class="drill-image">
+                <img src="https://www.sportsessionplanner.com/uploads/images/session_transitions/583335.jpg" alt="Professional Shooting Drill" style="width: 100%; max-width: 600px; margin: 10px auto; display: block;">>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Ball Control Drills Card -->
+  <div class="card mb-4" style="background-color: #3594fc;">
+    <button onclick="toggleVisibility('ballcontrolDrills')" style="margin-bottom: 10px;">Display Ball Control Drills</button>
+    <!-- Ball Control Drills Sections -->
+    <div id="ballcontrolDrills" style="display: none;">
+        <!-- Beginner Section -->
+        <div class="section">
+            <h3>Beginner Drills</h3>
+            <div class="drill">
+                <span class="drill-title">Ball Control Drill:</span>
+                <span class="drill-description">Get a teamate to pass and throw the ball at you from 5-10 yards. Focus on recieving the ball with different parts of your body and having a good first touch to keep the ball under control.</span>
+            </div>
+        </div>
+
+        <br>
+
+        <!-- Intermediate Section -->
+        <div class="section">
+            <h3>Intermediate Drills</h3>
+            <div class="drill">
+                <span class="drill-title">Ball Control Drill:</span>
+                <span class="drill-description">Have a defender 5 yards away from you. Set up two gates where you are reciving the ball to the left and right. Get the opposition to fizz a pass in before immediately sprinting towards you trying to dispossess you. Take a directional touch through one of the gates to avoid the defender. Get used to recieving the ball at pace and exploding away at high intensity.</span>
+            </div>
+        </div>
+
+        <br>
+    
+
+        <!-- Professional Section -->
+        <div class="section">
+            <h3>Professional Drills</h3>
+            <div class="drill">
+                <span class="drill-title">Ball Control Drill:</span>
+                <span class="drill-description">Juggle the ball up and pass it against a wall. As it comes back focus on controlling the ball to ensure it stays up. Pass it back using different parts of your feet (laces, sidefoot). When comfortable, limit touches eg one touch.</span>
+            </div>
+            <div class="drill-image">
+              <img src="https://th.bing.com/th/id/OIP.eSkvU2z-srnzXnCgzCGOrgHaEV?rs=1&pid=ImgDetMain" alt="Professional Ball Control Drill" style="width: 100%; max-width: 600px; margin: 10px auto; display: block;">>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  <script>
+      // Function to toggle the visibility of the drills sections
+      function toggleVisibility(sectionId) {
+          var section = document.getElementById(sectionId);
+          if (section.style.display === 'none') {
+              section.style.display = 'block';
+          } else {
+              section.style.display = 'none';
+          }
+      }
+  </script>
+{% endblock %}

@@ -1,0 +1,377 @@
+{% extends "myApp/base.html" %}
+
+{% block content %}
+  <h2>Strength</h2>
+
+<!-- Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-wL3gGf5A7CFPjktgS02Gz3q1lqVg6AqC9RHDPOC5PZ9YEI1Tbpxf2A3eSRIHlNmy" crossorigin="anonymous"></script>
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      background-color: #add8e6; /* Light Blue Background Color */
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    .option-section {
+      margin: 20px 0;
+    }
+    .option-section h3 {
+      margin-bottom: 10px;
+    }
+    .option-card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 10px;
+      background-color: #3594fc; /* Updated color to match other pages */
+      color: white; /* Add text color to maintain readability */
+    }
+    .btn-custom {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+    .btn-primary-custom {
+      background-color: #007bff;
+    }
+    .btn-secondary-custom {
+      background-color: #6c757d;
+    }
+    .modal {
+    z-index: 1050; /* Higher z-index than backdrop */
+    }
+    .modal-backdrop {
+        z-index: 1040; /* Backdrop z-index */
+    }
+  </style>
+
+<!-- Option 1: Explore -->
+<div class="container mt-5">
+      <div class="container text-center">
+          <div class="row">
+              <!-- Card 1: Lose Weight -->
+              <div class="col-md-4">
+                  <div class="card" style="background-color: #3594fc;">
+                      <div class="card-body">
+                          <h5 class="card-title text-white">Lose Fat</h5>
+                          <p class="card-text text-white">Workout Plan to help lose weight.</p>
+                          <button class="btn btn-light mt-2" data-bs-toggle="modal" data-bs-target="#loseWeightModal">View Plan</button>
+                          <img src="https://img.icons8.com/?size=512&id=vv98YjrPG73H&format=png" alt="Lose Weight Icon" class="img-fluid mt-3">
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Card 2: Maintain Weight -->
+              <div class="col-md-4">
+                  <div class="card" style="background-color: #3594fc;">
+                      <div class="card-body">
+                          <h5 class="card-title text-white">Lean and Tone</h5>
+                          <p class="card-text text-white">Workout Plan to help maintain physcial strength.</p>
+                          <button class="btn btn-light mt-2" data-bs-toggle="modal" data-bs-target="#maintainWeightModal">View Plan</button>
+                          <img src="https://img.icons8.com/?size=512&id=eMyFuLjESwET&format=png" alt="Stretching Icon" class="img-fluid mt-3">
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Card 3: Gain Strength -->
+              <div class="col-md-4">
+                  <div class="card" style="background-color: #3594fc;">
+                      <div class="card-body">
+                          <h5 class="card-title text-white">Gain Strength</h5>
+                          <p class="card-text text-white">Workout Plan to help gain strength.</p>
+                          <button class="btn btn-light mt-2" data-bs-toggle="modal" data-bs-target="#gainStrengthModal">View Plan</button>
+                          <img src="https://img.icons8.com/?size=512&id=MyDyhaNB2oZy&format=png" alt="Strong Icon" class="img-fluid mt-3">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Modals -->
+      <!-- Lose Weight Modal -->
+      <div class="modal fade" id="loseWeightModal" tabindex="-1" aria-labelledby="loseWeightModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="loseWeightModalLabel">Lose Weight Plan</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <p>Here is your weekly workout plan for losing weight:</p>
+                      <ul>
+                          <li>30-minute cardio (running, cycling) - 3 times a week</li>
+                          <li>Strength training (light weights) - 3 times a week</li>
+                          <li>Stretching and cool down - after every session</li>
+                          <li>Core exercises (plank, sit-ups) - optional extras</li>
+                      </ul>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Maintain Weight Modal -->
+      <div class="modal fade" id="maintainWeightModal" tabindex="-1" aria-labelledby="maintainWeightModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="maintainWeightModalLabel">Maintain Weight Plan</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <p>Here is your weekly workout plan for maintaining weight:</p>
+                      <ul>
+                          <li>30-minute light cardio (long walk, jogging) - every other day</li>
+                          <li>Full-body strength training - 2 times a week</li>
+                          <li>Yoga or Pilates - optional extras</li>
+                          <li>Stretching and cool down - after every session</li>
+                          <li>MAKE SURE TO REFUEL YOUR CALORIES BURNED</li>
+                      </ul>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Gain Strength Modal -->
+      <div class="modal fade" id="gainStrengthModal" tabindex="-1" aria-labelledby="gainStrengthModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="gainStrengthModalLabel">Gain Strength Plan</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <p>Here is your weekly workout plan for gaining strength:</p>
+                      <ul>
+                          <li>45-minute weight lifting (compound exercises) - 3 times a week</li>
+                          <li>Proggresive Overload! Increase the weight or number of reps on a weekly basis</li>
+                          <li>Core strengthening exercises - optional extras</li>
+                          <li>Stretching and cool down - after every session</li>
+                      </ul>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- Daily Motivation -->
+<div class="container mt-3 text-center" style="background-color: #7e8893; padding: 20px; border-radius: 8px;">
+  <span class="align-baseline" style="font-size: 1.5em;">Like</span>
+  <span class="align-top" style="font-size: 1.5em;">this</span>
+  <span class="align-middle" style="font-size: 1.5em;">sentence,</span>
+  <span class="align-baseline" style="font-size: 1.5em;">progress</span>
+  <span class="align-top" style="font-size: 1.5em;">is</span>
+  <span class="align-middle" style="font-size: 1.5em;">not</span>
+  <span class="align-bottom" style="font-size: 1.5em;">always</span>
+  <span class="align-bottom" style="font-size: 1.5em;">linear.</span>
+  <span class="align-middle" style="font-size: 1.5em;">Keep</span>
+  <span class="align-text-top" style="font-size: 1.5em;">on</span>
+  <span class="align-text-bottom" style="font-size: 1.5em;">pushing!</span>
+</div>
+
+
+<!-- Option 2: My Routines -->
+
+  <!-- Provide options for creating custom routines -->
+</br>
+  <div class="option-card" style="background-color: #3594fc; color: white; padding: 15px; border-radius: 5px;">
+    <h4>Create a Custom Routine</h4>
+    <p>Design your own workout plan based on your goals and preferences.</p>
+
+    <!-- Create Custom Workout Button -->
+    <button class="btn btn-custom btn-secondary" style="background-color: white; color: #3594fc;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWorkout" aria-controls="offcanvasWorkout">
+      Create Custom Workout
+    </button>
+  </div>
+
+  <!-- Offcanvas for Custom Workout -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWorkout" aria-labelledby="offcanvasWorkoutLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasWorkoutLabel">Create Custom Workout</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div>
+        <!-- Content for creating custom workouts -->
+        <p>Here, you can create your own custom workout routines based on your goals.</p>
+
+        <!-- Dropdown for selecting workout type -->
+        <div class="dropdown mt-3">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" id="workoutTypeDropdown" aria-expanded="false">
+            Type of Workout
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="workoutTypeDropdown">
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exerciseModal">Lose Fat / Cardio</a></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exerciseModal">Lean and Tone</a></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exerciseModal">Gain Strength</a></li>
+          </ul>
+        </div>
+
+        <!-- Modal for exercise form -->
+        <div class="modal fade" id="exerciseModal" tabindex="-1" aria-labelledby="exerciseModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exerciseModalLabel">Add Exercise</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form for adding exercises -->
+                        <form class="row g-3" id="exerciseForm">
+                            <div class="col-md-6">
+                                <label for="exerciseName" class="form-label">Exercise Name</label>
+                                <input type="text" class="form-control" id="exerciseName" required>
+                                <div class="invalid-feedback">
+                                    Please enter an exercise name.
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="sets" class="form-label">Sets</label>
+                                <input type="number" class="form-control" id="sets" min="1" max="20" required>
+                                <div class="invalid-feedback">
+                                    Please enter the number of sets.
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="reps" class="form-label">Reps</label>
+                                <input type="number" class="form-control" id="reps" min="1" max="50" required>
+                                <div class="invalid-feedback">
+                                    Please enter the number of reps.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="weight" class="form-label">Weight (kg)</label>
+                                <input type="number" class="form-control" id="weight" min="0" required>
+                                <div class="invalid-feedback">
+                                    Please enter the weight in kilograms.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="duration" class="form-label">Duration (minutes)</label>
+                                <input type="number" class="form-control" id="duration" min="1" required>
+                                <div class="invalid-feedback">
+                                    Please enter the duration of the exercise.
+                                </div>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <button class="btn btn-primary" type="submit">Add Exercise</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Add a container div to display exercises -->
+<div id="exercisesContainer" class="container-xl mt-4"></div>
+
+<script>
+  // Initialize an array to store exercises
+  let exercisesList = [];
+
+  // Function to render the exercises below the "My Routines" section
+  function renderExercises() {
+      // Get the container element where exercises will be displayed
+      const exercisesContainer = document.getElementById('exercisesContainer');
+      
+      // Clear any existing content in the container
+      exercisesContainer.innerHTML = '';
+      
+      // Create a table element
+      const table = document.createElement('table');
+      table.className = 'table table-striped';
+
+      // Create a table header
+      const thead = document.createElement('thead');
+      thead.innerHTML = `
+          <tr>
+              <th>#</th>
+              <th>Exercise Name</th>
+              <th>Sets</th>
+              <th>Reps</th>
+              <th>Weight (kg)</th>
+              <th>Duration (minutes)</th>
+          </tr>
+      `;
+      table.appendChild(thead);
+
+      // Create a table body
+      const tbody = document.createElement('tbody');
+
+      // Iterate through the exercises list and create a row for each exercise
+      exercisesList.forEach((exercise, index) => {
+          // Create a table row element
+          const row = document.createElement('tr');
+
+          // Populate the row with exercise details
+          row.innerHTML = `
+              <td>${index + 1}</td>
+              <td>${exercise.name}</td>
+              <td>${exercise.sets}</td>
+              <td>${exercise.reps}</td>
+              <td>${exercise.weight} kg</td>
+              <td>${exercise.duration} minutes</td>
+          `;
+
+          // Append the row to the table body
+          tbody.appendChild(row);
+      });
+
+      // Append the table body to the table
+      table.appendChild(tbody);
+
+      // Append the table to the container
+      exercisesContainer.appendChild(table);
+  }
+
+  // Event listener for form submission
+  document.getElementById('exerciseForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Capture form data
+      const name = document.getElementById('exerciseName').value;
+      const sets = document.getElementById('sets').value;
+      const reps = document.getElementById('reps').value;
+      const weight = document.getElementById('weight').value;
+      const duration = document.getElementById('duration').value;
+
+      // Create an exercise object
+      const exercise = {
+          name: name,
+          sets: sets,
+          reps: reps,
+          weight: weight,
+          duration: duration
+      };
+
+      // Add the exercise object to the exercises list
+      exercisesList.push(exercise);
+
+      // Render the updated exercises list
+      renderExercises();
+
+      // Reset the form
+      document.getElementById('exerciseForm').reset();
+  });
+</script>
+
+
+{% endblock %}

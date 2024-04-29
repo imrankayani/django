@@ -1,0 +1,265 @@
+{% extends "myApp/base.html" %}
+
+{% block content %}
+  <h2>Recovery</h2>
+  <style>
+    body {
+      background-color: #add8e6; /* Light Blue Background Color */
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    </style>
+
+<!-- Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-wL3gGf5A7CFPjktgS02Gz3q1lqVg6AqC9RHDPOC5PZ9YEI1Tbpxf2A3eSRIHlNmy" crossorigin="anonymous"></script>
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<!-- Recovery Information -->
+<div class="card mb-4" style="background-color: #3594fc;">
+  <div class="card-body">
+    <h5 class="card-title text-white">Recovery Information</h5>
+    <p class="card-text text-white">Recovery is just as important as the actual training you undergo. Follow these techniques to help take care of your body and mind after training or matches.</p>
+    <ul class="text-white">
+      <li>Ensure you are warming down after strenuous exercise.</li>
+      <li>Refuel with the right food and drink.</li>
+      <li>Ice baths.</li>
+      <li>Get a good amount of sleep.</li>
+      <li>Active recovery the following day</li>
+      <li>Steam / Sauna</li>
+    </ul>
+    <p class="card-text text-white">For more information, consult a professional coach or sports therapist.</p>
+  </div>
+</div>
+
+<!-- Recovery Topics -->
+
+<!-- Warm Down Section -->
+<div class="card mb-4" style="background-color: #3594fc;">
+  <div class="card-body">
+      <h5 class="card-title text-white">Warm Down</h5>
+      <p class="card-text text-white">Warming down after matches and training sessions is crucial for recovery. Here are some stretches you can perform:</p>
+      <button class="btn btn-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#warmDownDetails" aria-expanded="false" aria-controls="warmDownDetails">
+          View Details
+      </button>
+      <div class="collapse mt-3 text-white" id="warmDownDetails">
+          <div class="card card-body" style="background-color: #7e8893;">
+              <!-- Hamstring Stretches -->
+              <strong>Hamstring Stretches:</strong> 
+              <div class="row mb-3">
+                  <div class="col-md-8">
+                      <p style="font-size: 22px;">Start with your feet crossed over one another. Raise your hands above your head with your fingers pointing to the sky. Try to touch your toes if possible and hold the position for a few seconds, before slowly returning your arms to a neutral position. Repeat with your feet crossed over the other way.</p>
+                  </div>
+                  <div class="col-md-4">
+                      <img src="https://www.verywellfit.com/thmb/8xgEEuQsdE6Dk3WcS8LkpoYLoM0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/StandingHamstringStrethBothLegsAtOnce2-d6fde12460994b968dc65e63f5fa4dc6.jpg" alt="Hamstring Stretch" class="img-fluid rounded">
+                  </div>
+              </div>
+              
+              <!-- Calf Stretches -->
+              <strong>Calf Stretches:</strong> 
+              <div class="row mb-3">
+                  <div class="col-md-8">
+                      <p style="font-size: 22px;">Lean against a wall or a teammate for support, standing at an arm's distance. Lunge forward with your left leg, keeping it slightly bent, and stretch your right leg straight behind you while pressing your right heel into the ground. Hold for around 20 seconds, then switch legs. Repeat five times.</p>
+                  </div>
+                  <div class="col-md-4">
+                      <img src="https://th.bing.com/th/id/OIP.mAIqVD0lg5vnd5xvi7gZqwHaHa?rs=1&pid=ImgDetMain" alt="Calf Stretch" class="img-fluid rounded">
+                  </div>
+              </div>
+              
+              <!-- Quad Stretches -->
+              <strong>Quad Stretches:</strong>
+              <div class="row mb-3">
+                  <div class="col-md-8">
+                      <p style="font-size: 22px;">Stand with your feet about three to four inches apart. Pull your left foot up behind you with your left hand, keeping your back straight. Slowly pull your foot towards your glutes. Return your left foot to the ground, then repeat with your right foot.</p>
+                  </div>
+                  <div class="col-md-4">
+                      <img src="https://th.bing.com/th/id/R.13377ad7eb1144c8c5dee6544c5dc9fb?rik=7Ms55jlmdj1PfA&riu=http%3a%2f%2fmedia1.popsugar-assets.com%2ffiles%2fthumbor%2f8ePpGEmlw2aT8otUHpjJyAdTNHE%3d%2ffit-in%2f1024x1024%2f2013%2f07%2f29%2f788%2fn%2f1922729%2fc407e6635886ed81_quad-stretch-stranding%2fi%2fBest-Quad-Stretches.jpg&ehk=cTL56XYhLOdxMnA81eg5LvYG5JCgcrhFH%2fsjRVb6w2M%3d&risl=&pid=ImgRaw&r=0" alt="Quad Stretch" class="img-fluid rounded">
+                  </div>
+              </div>
+              
+              <!-- Lower Back Stretches -->
+              <strong>Lower Back Stretches:</strong>
+              <div class="row mb-3">
+                  <div class="col-md-8">
+                      <p style="font-size: 22px;">Lie on your back with your legs flat on the ground. Slowly bring your right knee over your left leg while keeping the rest of your body still. Use your left hand to hold your knee closer to the ground and stretch your right arm out behind you. Switch sides and repeat the process.</p>
+                  </div>
+                  <div class="col-md-4">
+                      <img src="https://nutritionrealm.com/wp-content/uploads/2019/01/stretch.jpg" alt="Lower Back Stretch" class="img-fluid rounded">
+                  </div>
+              </div>
+              
+              <hr>
+              <!-- Extra Help -->
+              <strong>Extra Help:</strong>
+              <div class="row mb-3">
+                  <div class="col-md-8">
+                      <p style="font-size: 22px;">For more visual / kinaesthetic learners, an attached video may be helpful to physically see the stretches. <a href="https://www.youtube.com/watch?v=Qy3U09CnELI" target="_blank" class="text-dark">Click here</a> for a walkthrough video of a good full-body stretching routine you can incorporate</p>
+                  </div>
+                  <div class="col-md-4">
+                      <img src="https://img.icons8.com/?size=512&id=63684&format=png" alt="Lower Back Stretch" class="img-fluid rounded">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Card with Refueling / Nutrition Tips -->
+<div class="card mb-4" style="background-color: #3594fc;">
+  <div class="card-body">
+      <h5 class="card-title text-white">Refueling / Nutrition</h5>
+      <p class="card-text text-white">Consume balanced meals and snacks to replenish energy stores and support recovery.</p>
+
+      <!-- Carousel below the card content -->
+      <div id="refuelingCarousel" class="carousel slide" data-bs-ride="carousel" style="width:100%; margin-top: 10px; height: 300px;">
+          <!-- Carousel indicators -->
+          <div class="carousel-indicators">
+              <button type="button" data-bs-target="#refuelingCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#refuelingCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#refuelingCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+
+          <!-- Carousel slides -->
+          <div class="carousel-inner">
+              <!-- Slide 1 -->
+              <div class="carousel-item active">
+                  <div class="container text-center">
+                      <div class="tip-box">
+                          <h4>Tip 1</h4>
+                          <p>Drink plenty of water throughout the day.</p>
+                          <img src="https://img.icons8.com/?size=512&id=miOMe7bjZpJ5&format=png" alt="Image 1" style="width: 10%;">
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="carousel-item">
+                  <div class="container text-center">
+                      <div class="tip-box">
+                          <h4>Tip 2</h4>
+                          <p>Eat foods high in antioxidants, blueberries for example.</p>
+                          <img src="https://img.icons8.com/?size=512&id=EmVOkS1ndXv5&format=png" alt="Image 2" style="width: 10%;">
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="carousel-item">
+                  <div class="container text-center">
+                      <div class="tip-box">
+                          <h4>Tip 3</h4>
+                          <p>Include protein-rich foods in your diet.</p>
+                          <img src="https://img.icons8.com/?size=512&id=s0ghdTtaCT4s&format=png" alt="Image 3" style="width: 10%;">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<!-- Ice Bath Section -->
+<div class="card mb-4" style="background-color: #3594fc;">
+  <div class="card-body">
+      <h5 class="card-title text-white">Ice Bath</h5>
+      <p class="card-text text-white">Taking an ice bath can provide various benefits to your body, helping you recover after intense physical activities.</p>
+      
+      <!-- Ice Bath Details -->
+      <button class="btn btn-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#iceBathDetails" aria-expanded="false" aria-controls="iceBathDetails">
+          View Details
+      </button>
+      <div class="collapse mt-3 text-white" id="iceBathDetails">
+        <div class="card card-body" style="background-color: #7e8893;">
+          <div class="d-flex align-items-center">
+            <!-- Text for Benefits of Ice Bath -->
+            <div style="flex: 2; padding-right: 10px;">
+              <p><strong>Benefits of Ice Bath:</strong></p>
+              <ul>
+                <li>Reduces inflammation and muscle soreness</li>
+                <li>Speeds up recovery time</li>
+                <li>Helps improve circulation</li>
+                <li>May aid in injury prevention</li>
+                <li>Can boost the immune system</li>
+              </ul>
+              <p>Immersing your body in cold water can have a significant positive impact on your recovery process after physical exertion. Ice baths can reduce inflammation, speed up recovery, and improve circulation, which in turn helps prevent injuries and supports a healthy immune system.</p>
+            </div>
+            
+            <!-- Picture of Ice Bath -->
+            <div style="flex: 1;">
+              <img src="https://img.icons8.com/?size=512&id=3b5YLEGZHYhC&format=png" alt="Ice Bath" class="img-fluid" style="width: 100%; height: auto; border-radius: 8px;">
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="card mb-4" style="background-color: #3594fc;">
+  <div class="card-body">
+    <h5 class="card-title text-white">Sleep</h5>
+    <p class="card-text text-white">Prioritize quality sleep to allow your body and mind to rest and recover effectively.</p>
+    <ul class="text-white">
+      <li>Consistency is key! Ensure you are sleeping around the same time each night.</li>
+      <li>Create a comfortable environment. Make sure your bedroom is dark, free from noise and a pleasant temperature.</li>
+      <li>Reduce blue light exposure before you sleep. Avoid using electronic devices as this can affect your circadian rhythm.</li>
+      <li>Engage in physcial activity during the day.</li>
+    </ul>
+    <p class="card-text text-white">If you are struggling to sleep, consult a professional who may be able to provide supplements to combat this.</p>
+  </div>
+</div>
+
+
+<div class="card mb-4" style="background-color: #3594fc;">
+  <div class="card-body">
+      <h5 class="card-title text-white">Active Recovery</h5>
+      <p class="card-text text-white">Engage in light physical activity on rest days to help your body recover while staying active.</p>
+      
+      <!-- Active Recovery Details -->
+      <button class="btn btn-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#activerecoveryDetails" aria-expanded="false" aria-controls="activerecoveryDetails">
+          View Details
+      </button>
+      <div class="collapse mt-3 text-white" id="activerecoveryDetails">
+        <div class="card card-body" style="background-color: #7e8893;">
+          <div class="d-flex align-items-center">
+            <!-- Text for Benefits of Active Recovery -->
+            <div style="flex: 2; padding-right: 10px;">
+              <p><strong>Benefits of Active Recovery:</strong></p>
+              <ul>
+                <li>Helps reduce lactic acid build up in muscles</li>
+                <li>Improves blood circulation</li>
+                <li>Helps improve muscle flexibilty and range of motion</li>
+                <li>Decreases muscle soreness</li>
+                <li>Removes toxins and waste products in the body</li>
+              </ul>
+              <p>Take part in active recovery the day after strenuous activity. This could be taking a lesuirely walk, partaking in light swimmming or performing yoga and some light stretching.</p>
+            </div>
+            
+            <!-- Picture of Active Recovery -->
+            <div style="flex: 1;">
+              <img src="https://img.icons8.com/?size=512&id=KM8quSsJIRIo&format=png" alt="Active Recovery" class="img-fluid" style="width: 100%; height: auto; border-radius: 8px;">
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="card mb-4" style="background-color: #3594fc;">
+  <div class="card-body">
+    <h5 class="card-title text-white">Steam / Sauna</h5>
+    <p class="card-text text-white">Use steam rooms or saunas to relax your muscles and promote circulation for recovery.</p>
+    <ul class="text-white">
+      <li>Help improve cardiovascular health and performance</li>
+      <li>Clears toxins and rejuvinates skin</li>
+      <li>Improves cognitive function and brain health</li>
+      <li>Relieve stress and promote better sleep</li>
+      <li>Relief of muscle pain</li>
+    </ul>
+    <p class="card-text text-white">Just two to three session a week of 15 - 20 minutes can increase recovery, overall health and performance. Be safe though; drink lots of water after and consult a doctor before making any drastic changes to your routine!</p>
+  </div>
+</div>
+
+{% endblock %}

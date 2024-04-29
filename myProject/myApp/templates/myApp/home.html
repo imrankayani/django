@@ -1,0 +1,248 @@
+{% extends "myApp/base.html" %}
+
+{% block content %}
+  <h2>Home</h2>
+
+  <div class="container mt-5">
+    <!-- Welcome Section with Surrounding Box -->
+    <div class="welcome-container p-4">
+      <h1 class="display-4 mb-4">Welcome to AthletePro</h1>
+      <p class="lead">
+        The ultimate football training companion, redefining standards in the sports app realm.
+        Elevate your game with a groundbreaking platform integrating top-notch training / workouts,
+        specialised dietary guidance, and advanced mindset focused features.
+        Join us and experience the competitive edge that sets us apart in the footballing industry.
+        Welcome to a new era of athletic mastery!
+      </p>
+      <img src="https://img.icons8.com/?size=512&id=84687&format=png" alt="Footballer Icon" class="img-fluid">
+    </div>
+      
+
+
+<body>
+    <!-- Mood Tracker Box -->
+    <div id="moodTrackerBox">
+        <h3>Mood Tracker</h3>
+        
+        <!-- Range Slider -->
+        <input type="range" class="form-range" min="0" max="4" id="moodSlider" step="1">
+
+        <!-- Container to display smiley face -->
+        <div id="smileyContainer"></div>
+
+        <!-- Container to display motivational message -->
+        <div id="moodMessage"></div>
+    </div>
+
+    
+    <div class="container">
+      <div class="row">
+          <!-- Left Column: Body Composition and Saved Data Section -->
+          <div class="col-md-6">
+              <!-- Body Composition Section -->
+              <div class="body-composition-container">
+                  <h3 class="text-black">Body Composition</h3>
+                  <form id="bodyCompositionForm">
+                      <div class="form-group mb-3">
+                          <label for="age">Age:</label>
+                          <input type="text" id="age" name="age" class="form-control">
+                      </div>
+                      <div class="form-group mb-3">
+                          <label for="height">Height(cm):</label>
+                          <input type="text" id="height" name="height" class="form-control">
+                      </div>
+                      <div class="form-group">
+                          <label for="weight">Weight(kg):</label>
+                          <input type="text" id="weight" name="weight" class="form-control">
+                      </div>
+                  </form>
+                  <button id="saveBtn" class="btn btn-primary action-btn">Save</button>
+                  <button id="editBtn" class="btn btn-secondary action-btn">Edit</button>
+              </div>
+  
+              <!-- Display Area for Showing the Saved Data -->
+              <div class="display-area" id="displayArea">
+                  <h3>Your Data:</h3>
+                  <p id="savedData">No data saved.</p>
+              </div>
+          </div>
+  
+          <!-- Right Column: About Me Section -->
+          <div class="col-md-6">
+              <div class="about-me-container p-4">
+                  <h3>About The Creator</h3>
+                  <p>Hello Everyone, My name is Imran Kayani and I am delighted to welcome you to AthletePro! As a current professional footballer, I was driven to make this app a means to help elevate fellow athletes to take their game to the next level. If you have any questions or queries regarding the app or want to follow my football journey, feel free to contact with me on my social media. Click the icons below to take you to my wikipedia, twitter and instagram pages.</p>
+  
+                  <!-- Social Media Icons -->
+                  <div class="social-media-icons mt-3">
+                      <a href="https://en.wikipedia.org/wiki/Imran_Kayani" target="_blank">
+                          <img src="https://img.icons8.com/?size=512&id=gDi80jDvhca2&format=png" alt="Wikipedia" width="32" height="32">
+                      </a>
+                      <a href="https://twitter.com/imran_kayani7" target="_blank">
+                          <img src="https://img.icons8.com/?size=512&id=ULM26f07x6SD&format=png" alt="Twitter" width="32" height="32">
+                      </a>
+                      <a href="https://www.instagram.com/imran_kayani/" target="_blank">
+                          <img src="https://img.icons8.com/?size=512&id=119026&format=png" alt="Instagram" width="32" height="32">
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <script>
+      // Load saved data from local storage on page load
+      window.onload = function() {
+          // Get saved data from local storage
+          const age = localStorage.getItem('age');
+          const height = localStorage.getItem('height');
+          const weight = localStorage.getItem('weight');
+
+          // Fill the form inputs with saved data
+          if (age && height && weight) {
+              document.getElementById('age').value = age;
+              document.getElementById('height').value = height;
+              document.getElementById('weight').value = weight;
+          }
+
+          // Display saved data
+          displaySavedData(age, height, weight);
+      };
+
+      // Function to display saved data in the display area
+      function displaySavedData(age, height, weight) {
+          const savedDataElement = document.getElementById('savedData');
+          savedDataElement.textContent = `Age: ${age}, Height: ${height}, Weight: ${weight}`;
+      }
+
+      // Save data to local storage and display it when "Save" button is clicked
+      document.getElementById('saveBtn').addEventListener('click', function() {
+          // Get values from form inputs
+          const age = document.getElementById('age').value;
+          const height = document.getElementById('height').value;
+          const weight = document.getElementById('weight').value;
+
+          // Save data to local storage
+          localStorage.setItem('age', age);
+          localStorage.setItem('height', height);
+          localStorage.setItem('weight', weight);
+
+          // Display the saved data
+          displaySavedData(age, height, weight);
+
+          // Set the input fields to readonly after saving
+          document.getElementById('age').setAttribute('readonly', true);
+          document.getElementById('height').setAttribute('readonly', true);
+          document.getElementById('weight').setAttribute('readonly', true);
+
+          alert('Data saved successfully!');
+      });
+
+      // Enable form inputs for editing when "Edit" button is clicked
+      document.getElementById('editBtn').addEventListener('click', function() {
+          document.getElementById('age').removeAttribute('readonly');
+          document.getElementById('height').removeAttribute('readonly');
+          document.getElementById('weight').removeAttribute('readonly');
+      });
+  </script>
+
+
+  <script>
+      // Function to update smiley face and motivational message based on slider value
+      function updateSmiley() {
+          // Get the slider, smiley container, and mood message elements
+          const slider = document.getElementById('moodSlider');
+          const smileyContainer = document.getElementById('smileyContainer');
+          const moodMessage = document.getElementById('moodMessage');
+
+          // Get the current slider value
+          const moodValue = parseInt(slider.value);
+
+          // Define an array of smiley faces based on mood levels
+          const smileyFaces = ['😢', '😐', '🙂', '😀', '😄'];
+
+          // Define an array of motivational messages based on mood levels
+          const moodMessages = [
+              "Don't worry, keep your head up! There is help if you need it, head over to our wellbeing page.",
+              "Every day is a new opportunity!",
+              "Stay positive and keep going!",
+              "Keep up that wonderful spirit!",
+              "You're on top of the world!"
+          ];
+
+          // Update the smiley container with the corresponding smiley face
+          smileyContainer.innerHTML = smileyFaces[moodValue];
+
+          // Update the mood message container with the corresponding motivational message
+          moodMessage.innerHTML = moodMessages[moodValue];
+      }
+
+      // Add an event listener to the slider to update the smiley face and motivational message when the slider value changes
+      document.getElementById('moodSlider').addEventListener('input', updateSmiley);
+
+      // Initialize the smiley face and motivational message on page load
+      updateSmiley();
+  </script>
+
+</body>
+
+  <style>
+    body {
+      background-color: #add8e6; /* Light Blue Background Color */
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Styling for the Surrounding Box */
+    .welcome-container,
+    .body-composition-container,
+    .about-me-container,
+    #moodTrackerBox {
+      text-align: center;
+      background-color: #8ab6d6; /* Slightly darker shade than the background */
+      border-radius: 8px; /* Optional: Add rounded corners to the box */
+      margin-top: 20px; /* Optional: Adjust margin for spacing */
+      margin-bottom: 20px; /* Optional: Adjust margin for spacing */
+    }
+
+    /* Updated styles for the header */
+    h1 {
+      color: #0a100d; /* Dark Text Color */
+      font-weight: bold; /* Make the font bold */
+      margin-bottom: 20px; /* Add space below the header */
+    }
+
+    /* Style for the "Home" link in the navigation bar */
+    .navbar-brand {
+      color: #000000; /* Red Text Color */
+      font-weight: bold; /* Make the font bold */
+      font-size: 24px; /* Increase font size */
+      margin-left: auto; /* Move the link to the right */
+      margin-right: auto; /* Move the link to the right */
+    }
+
+     /* Mood tracker box styles */
+     #moodTrackerBox {
+            background-color: #8ab6d6; /* Light gray background */
+            text-align: center;
+            margin: 20px auto;
+            border-radius: 8px; /* Optional: Add rounded corners to the box */
+            margin-top: 20px; /* Optional: Adjust margin for spacing */
+            margin-bottom: 20px; /* Optional: */
+    }
+
+    /* Smiley face container */
+    #smileyContainer {
+        font-size: 2em; /* Adjust the size of the smiley face */
+        margin-top: 10px;
+    }
+
+    /* Message styles */
+    #moodMessage {
+        font-size: 1.2em; /* Adjust the font size as needed */
+        margin-top: 10px;
+    }
+  </style>
+
+{% endblock %}
